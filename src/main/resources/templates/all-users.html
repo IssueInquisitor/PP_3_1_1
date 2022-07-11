@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All users</title>
+</head>
+<body>
+<div th:switch="${users}">
+    <h1 th:case="null" align="center" style="color: lightcoral">No users found!</h1>
+    <div th:case="*">
+    <h1 align="center" style="color: lightcoral">All users</h1>
+<br>
+<table border="1" class="table-header" align="center">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Age</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Department</th>
+        <th colspan="2">Operations</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">
+        <td th:text="${user.name}"/>
+        <td th:text="${user.surname}"/>
+        <td th:text="${user.age}">
+        <td th:text="${user.email}"/>
+        <td th:text="${user.department}"/>
+        <td>
+            <form th:action="@{user-update/{id}(id=${user.id})}">
+                <input type="submit" value="Edit">
+            </form>
+        </td>
+        <td>
+            <form th:action="@{user-delete/{id}(id=${user.id})}">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+    </div>
+<br>
+<form th:action="@{/user-create}" th:align="center">
+    <input type="submit" value="Add user">
+</form>
+</div>
+</body>
+</html>
