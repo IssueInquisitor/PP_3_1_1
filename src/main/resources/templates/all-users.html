@@ -39,7 +39,7 @@
             </form>
         </td>
         <td>
-            <form th:action="@{user-delete/{id}(id=${user.id})}">
+            <form th:method="DELETE" th:action="@{user-delete/{id}(id=${user.id})}">
                 <input type="submit" value="Delete">
             </form>
         </td>
